@@ -18,9 +18,12 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     '@typescript-eslint/no-import-type-side-effects': 'error',
-    "vue/block-order": ["error", {
-      "order": ["script", "template", "style"]
-    }]
+    'vue/block-order': [
+      'error',
+      {
+        order: ['script', 'template', 'style']
+      }
+    ]
   },
   overrides: [
     {

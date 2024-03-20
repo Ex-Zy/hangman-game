@@ -11,5 +11,16 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "gerillass"; 
+          @import "./src/assets/variables.scss";
+          @import "./src/assets/mixins.scss";
+        `
+      }
+    }
   }
 })
