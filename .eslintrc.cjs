@@ -5,9 +5,11 @@ module.exports = {
   root: true,
   plugins: ['no-relative-import-paths', 'simple-import-sort'],
   extends: [
-    'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-recommended',
     'eslint:recommended',
-    '@vue/eslint-config-typescript',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
+    '@vue/eslint-config-typescript/recommended',
     '@vue/eslint-config-prettier/skip-formatting',
     'plugin:vue-scoped-css/vue3-recommended'
   ],
@@ -25,6 +27,10 @@ module.exports = {
     }
   ],
   parserOptions: {
-    ecmaVersion: 'latest'
-  }
+    ecmaVersion: 'latest',
+    project: ['./tsconfig.app.json', './tsconfig.vitest.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+    parser: '@typescript-eslint/parser'
+  },
+  parser: 'vue-eslint-parser'
 }
