@@ -12,7 +12,7 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "stylelint": "npx stylelint **/*.{html,vue,css,scss}",
+    "stylelint": "npx stylelint **/*.{vue,css,scss}",
     "prepare": "husky"
   },
   "dependencies": {
@@ -50,6 +50,7 @@
     "stylelint-config-recommended": "^14.0.0",
     "stylelint-config-recommended-scss": "^14.0.0",
     "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-sass-guidelines": "^11.1.0",
     "stylelint-prettier": "^5.0.0",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.3.1",
