@@ -16,7 +16,8 @@ module.exports = {
   rules: {
     'no-relative-import-paths/no-relative-import-paths': ['error', { rootDir: 'src', prefix: '@' }],
     'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error'
+    'simple-import-sort/exports': 'error',
+    '@typescript-eslint/no-import-type-side-effects': 'error'
   },
   overrides: [
     {
@@ -32,5 +33,6 @@ module.exports = {
     tsconfigRootDir: __dirname,
     parser: '@typescript-eslint/parser'
   },
-  parser: 'vue-eslint-parser'
+  parser: 'vue-eslint-parser',
+  ignorePatterns: ['.eslintrc.cjs']
 }

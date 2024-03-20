@@ -12,7 +12,8 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "stylelint": "npx stylelint **/*.{html,vue,css,scss}"
+    "stylelint": "npx stylelint **/*.{html,vue,css,scss}",
+    "prepare": "husky"
   },
   "dependencies": {
     "eslint-plugin-simple-import-sort": "^12.0.0",
@@ -34,6 +35,7 @@
     "eslint-plugin-no-relative-import-paths": "^1.5.3",
     "eslint-plugin-vue": "^9.17.0",
     "eslint-plugin-vue-scoped-css": "^2.7.2",
+    "husky": "^9.0.11",
     "jsdom": "^24.0.0",
     "npm-run-all2": "^6.1.2",
     "postcss": "^8.4.36",
@@ -49,7 +51,7 @@
     "stylelint-config-recommended-scss": "^14.0.0",
     "stylelint-config-recommended-vue": "^1.5.0",
     "stylelint-prettier": "^5.0.0",
-    "typescript": "~5.4.0",
+    "typescript": "^5.3.3",
     "typescript-eslint": "^7.3.1",
     "vite": "^5.1.5",
     "vite-plugin-stylelint": "^5.3.1",
