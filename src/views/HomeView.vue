@@ -1,9 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import GameBoard from '@/components/GameBoard.vue'
+</script>
 
 <template>
-  <div>
-    <h1>Hello world</h1>
-  </div>
+  <div class="home"><GameBoard /></div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+</style>
