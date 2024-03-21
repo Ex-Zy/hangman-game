@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import AppLogo from '@/components/AppLogo.vue'
 import UiButton from '@/components/common/UiButton.vue'
 import PlayButton from '@/components/PlayButton.vue'
 </script>
 
 <template>
   <div class="gboard">
-    <h1 class="logo logo--centered">The Hangman Game</h1>
+    <AppLogo class="gboard__logo" />
     <PlayButton />
     <UiButton class="gboard__how-to-btn">how to play</UiButton>
   </div>
@@ -17,25 +18,24 @@ import PlayButton from '@/components/PlayButton.vue'
   @include sizer(324px, 481px);
 
   position: relative;
+  background: linear-gradient(180deg, #344aba 0%, #001479 100%);
+  border-radius: 48px;
+  box-shadow:
+    inset 0 -8px 0 4px #140e66,
+    inset 0 6px 0 8px var(--color-blue);
+
+  &__logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   &__how-to-btn {
     position: absolute;
     bottom: 64px;
     left: 50%;
     transform: translateX(-50%);
-  }
-}
-
-.logo {
-  @include background-image('@/assets/logo.svg');
-  @include sizer(263px, 130px);
-  @include font-hide;
-
-  &--centered {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 }
 </style>
