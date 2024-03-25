@@ -3,22 +3,28 @@ import IconPlay from '@/components/icons/IconPlay.vue'
 </script>
 
 <template>
-  <button type="button" class="btn-play btn-play--centered">
+  <button type="button" class="btn-play">
     <IconPlay class="btn-play__icon" />
   </button>
 </template>
 
 <style scoped lang="scss">
 .btn-play {
-  @include sizer(160px);
+  --size: 160px;
+
+  @include sizer(var(--size));
   @include linear-gradient(bottom, #fe71fe #7199ff);
+
+  @include tablet {
+    --size: 200px;
+  }
 
   cursor: pointer;
   border-radius: 50%;
   box-shadow:
     inset 0 -4px 0 5px #243041,
     inset 0 -12px 0 11px #9d2df5;
-  transition: all 0.25s;
+  transition: box-shadow 0.25s;
 
   &:hover {
     box-shadow:
@@ -32,10 +38,20 @@ import IconPlay from '@/components/icons/IconPlay.vue'
     position: absolute;
   }
 
-  &--centered {
-    @include center(both);
+  @media (hover: hover) {
+    &:hover {
+      box-shadow:
+        inset 0 -4px 0 10px #243041,
+        inset 0 -12px 0 15px #9d2df5;
+    }
+  }
 
-    position: absolute;
+  @media (hover: none) {
+    &:active {
+      box-shadow:
+        inset 0 -4px 0 10px #243041,
+        inset 0 -12px 0 15px #9d2df5;
+    }
   }
 }
 </style>

@@ -126,6 +126,14 @@
 
 <style scoped lang="scss">
 .logo {
-  @include sizer(263px, 130px);
+  --width: 263px;
+  --height: 130px;
+
+  @include sizer(var(--width), var(--height));
+
+  @include tablet {
+    --width: 374px;
+    --height: 185px;
+  }
 }
 </style>

@@ -7,15 +7,17 @@
 <style scoped lang="scss">
 .btn {
   --radius: 40px;
+  --font-size: 32px;
+  --width: 260px;
+  --height: 62px;
+
+  @include sizer(var(--width), var(--height));
 
   cursor: pointer;
 
   position: relative;
 
-  width: 260px;
-  height: 62px;
-
-  font-size: 32px;
+  font-size: var(--font-size);
   font-weight: 400;
   line-height: 120%;
   color: #fff;
@@ -48,8 +50,16 @@
     transition: opacity 0.25s;
   }
 
-  &:hover::before {
-    opacity: 1;
+  @media (hover: hover) {
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  @media (hover: none) {
+    &:active::before {
+      opacity: 1;
+    }
   }
 }
 </style>
