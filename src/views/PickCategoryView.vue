@@ -10,7 +10,10 @@ const { names } = storeToRefs(useCategories())
 <template>
   <DefaultLayout title="Pick a Category">
     <ul class="categories">
-      <li v-for="name in names" :key="name" class="categories__item">{{ name }}</li>
+      <template v-for="(name, index) in names" :key="name">
+        <li v-if="index % 2" v-motion-slide-visible-top class="categories__item">{{ name }}</li>
+        <li v-else v-motion-slide-visible-bottom class="categories__item">{{ name }}</li>
+      </template>
     </ul>
   </DefaultLayout>
 </template>

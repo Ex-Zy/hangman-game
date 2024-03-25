@@ -15,3 +15,8 @@ export interface Category {
   name: string
   selected: boolean
 }
+
+export interface Step {
+  title: string
+  body: string
+}

@@ -61,6 +61,7 @@ $font-size: (
   &--h3 {
     @include tablet {
       font-size: 104px;
+      letter-spacing: -0.01em;
     }
   }
 }

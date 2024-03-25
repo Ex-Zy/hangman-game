@@ -16,7 +16,7 @@ function redirectBack() {
 <template>
   <section class="layout">
     <div class="layout__in">
-      <header class="layout__header">
+      <header v-motion-slide-bottom class="layout__header">
         <BackButton class="layout__back-btn" @click="redirectBack" />
         <UiHeading tag="h2" type="medium" :text="props.title" />
       </header>

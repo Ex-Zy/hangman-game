@@ -19,23 +19,21 @@ import IconPlay from '@/components/icons/IconPlay.vue'
     --size: 200px;
   }
 
+  @include flex-center;
+
   cursor: pointer;
   border-radius: 50%;
   box-shadow:
     inset 0 -4px 0 5px #243041,
     inset 0 -12px 0 11px #9d2df5;
-  transition: box-shadow 0.25s;
+  transition:
+    box-shadow 0.25s,
+    transform 0.25s;
 
   &:hover {
     box-shadow:
       inset 0 -4px 0 10px #243041,
       inset 0 -12px 0 15px #9d2df5;
-  }
-
-  &__icon {
-    @include center(both);
-
-    position: absolute;
   }
 
   @media (hover: hover) {
