@@ -6,5 +6,8 @@ body {
   font-weight: 400;
   line-height: 120%;
   color: #fff;
-  text-align: left;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }

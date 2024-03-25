@@ -31,8 +31,9 @@ async function redirectTo(page: 'how-to-play' | 'pick-category') {
     --radius: 72px;
   }
 
+  @include linear-gradient(bottom, #344aba #001479);
+
   position: relative;
-  background: linear-gradient(180deg, #344aba 0%, #001479 100%);
   border-radius: var(--radius);
   box-shadow:
     inset 0 -8px 0 4px #140e66,
