@@ -2,13 +2,18 @@
 import AppLogo from '@/components/AppLogo.vue'
 import UiButton from '@/components/common/UiButton.vue'
 import PlayButton from '@/components/PlayButton.vue'
+import router from '@/router'
+
+async function redirectTo(page: 'how-to-play' | 'pick-category') {
+  await router.push(`/${page}`)
+}
 </script>
 
 <template>
   <div class="gboard">
     <AppLogo class="gboard__logo" />
-    <PlayButton class="gboard__play" />
-    <UiButton class="gboard__how-to-btn">how to play</UiButton>
+    <PlayButton class="gboard__play" @click="redirectTo('pick-category')" />
+    <UiButton class="gboard__how-to-btn" @click="redirectTo('how-to-play')">how to play</UiButton>
   </div>
 </template>
 

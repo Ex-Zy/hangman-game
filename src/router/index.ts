@@ -7,6 +7,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('@/views/HomeView.vue')
+    },
+    {
+      path: '/how-to-play',
+      name: 'HowToPlay',
+      component: () => import('@/views/HowToPlayView.vue')
+    },
+    {
+      path: '/pick-category',
+      name: 'PickCategory',
+      component: () => import('@/views/PickCategoryView.vue')
     }
   ]
 })

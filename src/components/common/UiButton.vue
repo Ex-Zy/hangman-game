@@ -1,7 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emit = defineEmits<(e: 'click') => void>()
+
+function handleClick() {
+  emit('click')
+}
+</script>
 
 <template>
-  <button class="btn"><slot>Default text</slot></button>
+  <button class="btn" @click="handleClick"><slot>Default text</slot></button>
 </template>
 
 <style scoped lang="scss">
