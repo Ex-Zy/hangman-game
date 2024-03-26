@@ -48,6 +48,8 @@ defineProps<Props>()
   border-radius: var(--radius);
 
   &__title {
+    @include font($fs: var(--fs-title), $color: var(--color-dark-navy));
+
     @include desktop {
       flex-direction: column;
       gap: 50px;
@@ -55,22 +57,14 @@ defineProps<Props>()
 
     display: flex;
     gap: 16px;
-
-    font-size: var(--fs-title);
-    font-weight: 400;
-    line-height: 120%;
-    color: var(--color-dark-navy);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   &__body {
-    margin-top: 14px;
+    @include font($fs: var(--fs-body), $color: var(--color-body));
 
-    font-size: var(--fs-body);
-    font-weight: 400;
-    line-height: 120%;
-    color: var(--color-body);
+    margin-top: 14px;
     letter-spacing: 0.05em;
   }
 
