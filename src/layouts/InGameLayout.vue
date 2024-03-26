@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BackButton from '@/components/common/BackButton.vue'
+import HamburgerButton from '@/components/common/HamburgerButton.vue'
 import UiHeading from '@/components/common/UiHeading.vue'
 import router from '@/router'
 
@@ -17,8 +17,8 @@ function redirectBack() {
   <section class="layout">
     <div class="layout__in">
       <header v-motion-slide-bottom class="layout__header">
-        <BackButton class="layout__back-btn" @click="redirectBack" />
-        <UiHeading tag="h1" type="extra-large" :text="props.title" />
+        <HamburgerButton class="layout__btn" @click="redirectBack" />
+        <UiHeading tag="h2" type="large" :text="props.title" :has-gradient="false" />
       </header>
       <main class="layout__main">
         <slot />
@@ -33,16 +33,19 @@ function redirectBack() {
   --padding-inline: 32px;
   --margin: 78px;
   --width: 324px;
+  --gap: 16px;
 
   @include tablet {
     --padding-block: 60px;
     --padding-inline: 60px;
     --width: 680px;
     --margin: 100px;
+    --gap: 32px;
   }
 
   @include desktop {
     --width: 1240px;
+    --gap: 40px;
   }
 
   padding: var(--padding-block) var(--padding-inline);
@@ -54,27 +57,13 @@ function redirectBack() {
   }
 
   &__header {
-    @include tablet {
-      position: relative;
-      justify-content: center;
-    }
-
     display: flex;
+    gap: var(--gap);
     align-items: center;
-    justify-content: space-between;
   }
 
   &__main {
     margin-top: var(--margin);
-  }
-
-  &__back-btn {
-    @include tablet {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-    }
   }
 }
 </style>

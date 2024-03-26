@@ -5,8 +5,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'HomeView',
-      component: () => import('@/views/HomeView.vue')
+      name: 'StartGameView',
+      component: () => import('@/views/StartGameView.vue')
     },
     {
       path: '/how-to-play',
@@ -20,8 +20,8 @@ const router = createRouter({
     },
     {
       path: '/game',
-      name: 'GameView',
-      component: () => import('@/views/GameView.vue')
+      name: 'InGameView',
+      component: () => import('@/views/InGameView.vue')
     }
   ]
 })

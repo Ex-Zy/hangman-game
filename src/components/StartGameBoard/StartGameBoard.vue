@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AppLogo from '@/components/AppLogo.vue'
 import UiButton from '@/components/common/UiButton.vue'
-import PlayButton from '@/components/PlayButton.vue'
+import AppLogo from '@/components/StartGameBoard/AppLogo.vue'
+import PlayButton from '@/components/StartGameBoard/PlayButton.vue'
 import router from '@/router'
 
 async function redirectTo(page: 'how-to-play' | 'pick-category') {

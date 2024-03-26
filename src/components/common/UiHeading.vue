@@ -13,15 +13,12 @@ const props = withDefaults(defineProps<Props>(), {
 
 const classes = computed(() => {
   const mainClass = 'title'
-  const prefix = 'title--'
+  const modifierClass = `${mainClass}--${props.tag}`
 
   return {
     [mainClass]: true,
     'title--has-gradient': props.hasGradient,
-    [prefix + 'h1']: props.type === 'extra-large',
-    [prefix + 'h2']: props.type === 'large',
-    [prefix + 'h3']: props.type === 'medium',
-    [prefix + 'h4']: props.type === 'small'
+    [modifierClass]: props.type
   }
 })
 </script>
@@ -31,6 +28,7 @@ const classes = computed(() => {
 </template>
 
 <style scoped lang="scss">
+// desktop variants
 $font-size: (
   'h1': 136px,
   'h2': 88px,
@@ -58,9 +56,24 @@ $font-size: (
     }
   }
 
-  &--h3 {
+  &--h1 {
     @include tablet {
       font-size: 104px;
+      letter-spacing: -0.01em;
+    }
+
+    @include mobile {
+      font-size: 48px;
+    }
+  }
+
+  &--h2 {
+    @include tablet {
+      font-size: 48px;
+    }
+
+    @include mobile {
+      font-size: 40px;
       letter-spacing: -0.01em;
     }
   }
