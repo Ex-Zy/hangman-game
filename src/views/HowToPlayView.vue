@@ -25,8 +25,12 @@ const howToSteps = reactive<Step[]>([
   <DefaultLayout title="How to Play">
     <dl class="how-to">
       <template v-for="(step, index) in howToSteps" :key="step.title">
-        <HowToItem v-if="index % 2" v-motion-slide-visible-top :index="index" :step="step" />
-        <HowToItem v-else v-motion-slide-visible-bottom :index="index" :step="step" />
+        <template v-if="index % 2">
+          <HowToItem v-motion-slide-visible-once-left :index="index" :step="step" />
+        </template>
+        <template v-else>
+          <HowToItem v-motion-slide-visible-once-right :index="index" :step="step" />
+        </template>
       </template>
     </dl>
   </DefaultLayout>
