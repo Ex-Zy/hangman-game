@@ -4,15 +4,28 @@ import { storeToRefs } from 'pinia'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import { useCategories } from '@/stores/useCategories'
 
-const { names } = storeToRefs(useCategories())
+const { categoriesName } = storeToRefs(useCategories())
+const { pickCategory } = useCategories()
+
+function handleClick(name: string) {
+  pickCategory(name)
+}
 </script>
 
 <template>
   <DefaultLayout title="Pick a Category">
     <ul class="categories">
-      <template v-for="(name, index) in names" :key="name">
-        <li v-if="index % 2" v-motion-slide-visible-top class="categories__item">{{ name }}</li>
-        <li v-else v-motion-slide-visible-bottom class="categories__item">{{ name }}</li>
+      <template v-for="(name, index) in categoriesName" :key="name">
+        <template v-if="index % 2">
+          <li v-motion-slide-visible-top class="categories__item" @click="handleClick(name)">
+            {{ name }}
+          </li>
+        </template>
+        <template v-else>
+          <li v-motion-slide-visible-bottom class="categories__item" @click="handleClick(name)">
+            {{ name }}
+          </li>
+        </template>
       </template>
     </ul>
   </DefaultLayout>
@@ -20,7 +33,6 @@ const { names } = storeToRefs(useCategories())
 
 <style scoped lang="scss">
 .categories {
-  --rate: 1;
   --radius: 20px;
   --fs-size: 24px;
   --height: 77px;
