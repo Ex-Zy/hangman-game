@@ -1,7 +1,6 @@
 {
   "plugins": [
-    "stylelint-group-selectors",
-    "stylelint-value-no-exposed-custom-properties"
+    "stylelint-group-selectors"
   ],
   "extends": [
     "stylelint-config-html",
@@ -16,7 +15,6 @@
   "rules": {
     "at-rule-no-unknown": null,
     "no-empty-source": null,
-    "plugin/stylelint-group-selectors": true,
-    "plugin/value-no-exposed-custom-properties": true
+    "plugin/stylelint-group-selectors": true
   }
 }

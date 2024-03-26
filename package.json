@@ -56,7 +56,6 @@
     "stylelint-config-sass-guidelines": "^11.1.0",
     "stylelint-group-selectors": "^1.0.10",
     "stylelint-prettier": "^5.0.0",
-    "stylelint-value-no-exposed-custom-properties": "^2.3.1",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.3.1",
     "vite": "^5.1.5",
