@@ -20,3 +20,10 @@ export interface Step {
   title: string
   body: string
 }
+
+export type Word = Letter[][]
+
+export interface Letter {
+  name: string
+  enable: boolean
+}
