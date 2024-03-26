@@ -2,13 +2,15 @@
 import { storeToRefs } from 'pinia'
 
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
+import router from '@/router'
 import { useCategories } from '@/stores/useCategories'
 
 const { categoriesName } = storeToRefs(useCategories())
 const { pickCategory } = useCategories()
 
-function handleClick(name: string) {
+async function handleClick(name: string) {
   pickCategory(name)
+  await router.push('/game')
 }
 </script>
 
