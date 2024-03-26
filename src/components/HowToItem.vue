@@ -27,22 +27,23 @@ defineProps<Props>()
   --fs-body: 16px;
   --color-body: #887dc0;
   --bg: #fff;
+  --padding: 32px;
 
   @include tablet {
     --fs-index: 88px;
     --fs-title: 40px;
     --fs-body: 20px;
-
-    padding: 32px 40px 32px 140px;
+    --padding: 32px 40px 32px 140px;
   }
 
   @include desktop {
-    padding: 60px 40px;
+    --padding: 60px 40px;
+
     text-align: center;
   }
 
   position: relative;
-  padding: 32px;
+  padding: var(--padding);
   background: var(--bg);
   border-radius: var(--radius);
 
@@ -77,7 +78,7 @@ defineProps<Props>()
     @include tablet-only {
       position: absolute;
       top: 50%;
-      left: 40px;
+      left: 40px; /* stylelint-disable-line */
       transform: translateY(-50%);
     }
 
