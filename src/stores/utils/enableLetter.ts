@@ -1,6 +1,6 @@
-import type { Letter, Word } from '@/types'
+import type { EncryptedWord, Letter } from '@/types'
 
-export function enableLetter(multipleWords: Word, letter: Letter) {
+export function enableLetter(multipleWords: EncryptedWord, letter: Letter) {
   return multipleWords.map((word) => {
     return word.map((currentLetter) => {
       const isSameLetter = currentLetter.name === letter.name

@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
+
+import MenuGame from '@/components/InGameBoard/MenuGame.vue'
+import { useMenu } from '@/stores/useMenu'
 const route = useRoute()
 
 const isInnerPage = computed(() => route.name !== 'home')
+
+const menuStore = useMenu()
 </script>
 
 <template>
   <div class="out" :class="{ 'out--inner': isInnerPage }">
     <RouterView />
   </div>
+  <MenuGame v-if="menuStore.isShow" />
 </template>
 
 <style lang="scss" scoped>
@@ -34,16 +40,7 @@ const isInnerPage = computed(() => route.name !== 'home')
   }
 
   &--inner::after {
-    content: '';
-
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-
-    display: block;
-
-    opacity: 0.75;
-    background: linear-gradient(180deg, #1a043a 0%, #151278 70.31%, #2b1677 100%);
+    @include backdrop-pseudo;
   }
 }
 </style>

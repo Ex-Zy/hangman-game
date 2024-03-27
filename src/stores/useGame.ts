@@ -1,44 +1,53 @@
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 import { useCategories } from '@/stores/useCategories'
+import { useMenu } from '@/stores/useMenu'
 import { createKeyboardAlphabet } from '@/stores/utils/createKeyboardAlphabet'
 import { createRandomWord } from '@/stores/utils/createRandomWord'
 import { enableLetter } from '@/stores/utils/enableLetter'
 import { isLetterCorrectly } from '@/stores/utils/isLetterCorrectly'
-import type { Category, Letter, Word } from '@/types'
-import { CategoriesEnum } from '@/types'
+import type { Categories, EncryptedWord, Letter, Word } from '@/types'
 
 export const useGame = defineStore('game', () => {
-  const { categories, category } = storeToRefs(useCategories())
+  const categoriesStore = useCategories()
+  const menuStore = useMenu()
 
   const initialRandomWord = ref('')
-  const randomWord = ref<Word>([])
+  const randomWord = ref<EncryptedWord>([])
 
   const keyboardAlphabet = ref(createKeyboardAlphabet())
   const health = ref(100)
-  const DECREASE_STEP = 100 / 8 // only 8 available attempts for wrong choice
 
-  function getRandomWord() {
-    const words: Category[] = category.value
-      ? categories.value[category.value as CategoriesEnum]
-      : categories.value[CategoriesEnum.countries]
+  function getRandomWord(categories: Categories, category: string) {
+    const words: Word[] = categories[category]
 
     return words[Math.floor(Math.random() * words.length)].name
   }
 
-  function saveRandomWordInStore() {
-    initialRandomWord.value = getRandomWord()
+  function setRandomWordToStore() {
+    initialRandomWord.value = getRandomWord(categoriesStore.categories, categoriesStore.category)
     randomWord.value = createRandomWord(initialRandomWord.value)
   }
 
   function pickLetter(letter: Letter) {
     if (isLetterCorrectly(randomWord.value, letter)) {
       setCorrectlyLetter(letter)
-      return
-    }
 
-    setWrongLetter(letter)
+      if (isGameWon()) {
+        menuStore.youWin()
+      }
+    } else {
+      setWrongLetter(letter)
+
+      if (isHealthOver()) {
+        menuStore.youLose()
+      }
+    }
+  }
+
+  function isGameWon(): boolean {
+    return randomWord.value.flat(1).every((letter) => letter.enable)
   }
 
   function setCorrectlyLetter(letter: Letter) {
@@ -52,7 +61,20 @@ export const useGame = defineStore('game', () => {
   }
 
   function decreaseHealth() {
-    health.value -= DECREASE_STEP
+    // only 8 available attempts for wrong choice
+    const DECREASE_STEP = 100 / 8
+
+    if (isHealthOkay()) {
+      health.value -= DECREASE_STEP
+    }
+  }
+
+  function isHealthOkay() {
+    return health.value > 0
+  }
+
+  function isHealthOver() {
+    return health.value <= 0
   }
 
   function enableLetterInRandomWord(letter: Letter) {
@@ -64,6 +86,7 @@ export const useGame = defineStore('game', () => {
   }
 
   function reset() {
+    // Attention: we reset current game state, but don't reset category
     health.value = 100
     initialRandomWord.value = ''
     randomWord.value = []
@@ -75,9 +98,9 @@ export const useGame = defineStore('game', () => {
     keyboardAlphabet,
     randomWord,
     health,
-    getRandomWord,
-    saveRandomWordInStore,
+    setRandomWordToStore,
     pickLetter,
-    reset
+    reset,
+    isHealthOver
   }
 })

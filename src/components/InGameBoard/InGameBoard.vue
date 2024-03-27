@@ -5,8 +5,8 @@ import GameKeyboard from '@/components/InGameBoard/GameKeyboard.vue'
 import RandomWord from '@/components/InGameBoard/RandomWord.vue'
 import { useGame } from '@/stores/useGame'
 
-const { saveRandomWordInStore, reset } = useGame()
-onBeforeMount(saveRandomWordInStore)
+const { setRandomWordToStore, reset } = useGame()
+onBeforeMount(setRandomWordToStore)
 onBeforeUnmount(reset)
 </script>
 

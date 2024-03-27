@@ -7,11 +7,9 @@ export enum CategoriesEnum {
   sports = 'Sports'
 }
 
-export type Categories = {
-  [key in CategoriesEnum]: Category[]
-}
+export type Categories = Record<string, Word[]>
 
-export interface Category {
+export interface Word {
   name: string
   selected: boolean
 }
@@ -21,9 +19,11 @@ export interface Step {
   body: string
 }
 
-export type Word = Letter[][]
+export type EncryptedWord = Letter[][]
 
 export interface Letter {
   name: string
   enable: boolean
 }
+
+export type MenuType = 'lose' | 'win' | 'pause'

@@ -14,7 +14,7 @@
   }
 }
 
-@mixin flex-row($wrap: wrap, $gap: 0, $horizontal: false) {
+@mixin flex-row($wrap: wrap, $gap: 0, $horizontal: false, $vertical: false) {
   display: flex;
   flex-direction: row;
   flex-wrap: $wrap;
@@ -26,14 +26,36 @@
   @if $horizontal == true {
     justify-content: center;
   }
+
+  @if $vertical == true {
+    align-items: center;
+  }
 }
 
-@mixin font($fs: 26px, $fw: 400, $lh: 120%, $color: var(--color-white)) {
+@mixin flex-column($gap: 0, $horizontal: false) {
+  display: flex;
+  flex-direction: column;
+
+  @if $gap != 0 {
+    gap: $gap;
+  }
+
+  @if $horizontal == true {
+    align-items: center;
+  }
+}
+
+@mixin font($fs: 26px, $fw: 400, $lh: 120%, $color: var(--color-white), $ls: normal, $align: null) {
   font-family: 'Mouse Memoirs', sans-serif;
   font-size: $fs;
   font-weight: $fw;
   line-height: $lh;
   color: $color;
+  letter-spacing: $ls;
+
+  @if $align != null {
+    text-align: $align;
+  }
 }
 
 // Media query
@@ -110,4 +132,59 @@
       opacity: 1;
     }
   }
+}
+
+@mixin btn-pink {
+  @include linear-gradient(bottom, #fe71fe #7199ff);
+
+  border-radius: var(--radius);
+  box-shadow:
+    inset 0 -2px 0 3px #140e66,
+    inset 0 1px 0 6px #c642fb;
+}
+
+@mixin btn-pink-hover() {
+  &::before {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    display: block;
+
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius);
+    box-shadow:
+      inset 0 -2px 0 3px #140e66,
+      inset 0 1px 0 6px #c642fb;
+
+    transition: opacity 0.25s;
+  }
+
+  @media (hover: hover) {
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  @media (hover: none) {
+    &:active::before {
+      opacity: 1;
+    }
+  }
+}
+
+// Other
+@mixin backdrop-pseudo {
+  content: '';
+
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  display: block;
+
+  opacity: 0.75;
+  background: linear-gradient(180deg, #1a043a 0%, #151278 70.31%, #2b1677 100%);
 }

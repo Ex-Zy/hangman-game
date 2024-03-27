@@ -1,6 +1,6 @@
-import type { Word } from '@/types'
+import type { EncryptedWord } from '@/types'
 
-export const createRandomWord = (multiWord: string): Word => {
+export const createRandomWord = (multiWord: string): EncryptedWord => {
   const words = multiWord.split(' ')
 
   return words.map((word) => {
