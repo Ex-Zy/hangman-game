@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import HamburgerButton from '@/components/common/HamburgerButton.vue'
 import UiHeading from '@/components/common/UiHeading.vue'
+import IconHeart from '@/components/icons/IconHeart.vue'
+import HealthBar from '@/components/InGameBoard/HealthBar.vue'
 import router from '@/router'
 
 interface Props {
   title: string
+  health: number
 }
 const props = defineProps<Props>()
 
@@ -19,6 +22,9 @@ function redirectBack() {
       <header v-motion-slide-bottom class="layout__header">
         <HamburgerButton class="layout__btn" @click="redirectBack" />
         <UiHeading tag="h2" type="large" :text="props.title" :has-gradient="false" />
+        <div style="margin: auto" />
+        <HealthBar :value="props.health" />
+        <IconHeart />
       </header>
       <main class="layout__main">
         <slot />
