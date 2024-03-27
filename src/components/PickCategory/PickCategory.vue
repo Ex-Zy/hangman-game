@@ -62,7 +62,6 @@ async function handleClick(name: string) {
     @include btn-blue;
     @include btn-blue-hover;
 
-    touch-action: none;
     cursor: pointer;
 
     position: relative;
