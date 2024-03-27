@@ -9,7 +9,7 @@ const { pickCategory } = useCategories()
 
 async function handleClick(name: string) {
   pickCategory(name)
-  await router.push('/game')
+  await router.push('/in-game')
 }
 </script>
 

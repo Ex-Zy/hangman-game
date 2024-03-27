@@ -3,8 +3,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    { path: '/', redirect: '/start-game' },
+    { path: '/game', redirect: '/in-game' },
     {
-      path: '/',
+      path: '/start-game',
       name: 'StartGameView',
       component: () => import('@/views/StartGameView.vue')
     },
@@ -19,7 +21,7 @@ const router = createRouter({
       component: () => import('@/views/PickCategoryView.vue')
     },
     {
-      path: '/game',
+      path: '/in-game',
       name: 'InGameView',
       component: () => import('@/views/InGameView.vue')
     }
