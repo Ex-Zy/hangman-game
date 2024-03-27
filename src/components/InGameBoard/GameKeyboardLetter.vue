@@ -32,6 +32,20 @@ const classes = computed(() => {
   --radius: 8px;
   --font-size: 24px;
 
+  @include tablet {
+    --width: 64px;
+    --height: 84px;
+    --radius: 24px;
+    --font-size: 48px;
+  }
+
+  @include desktop {
+    --width: 109px;
+    --height: 84px;
+    --radius: 24px;
+    --font-size: 48px;
+  }
+
   @include sizer(var(--width), var(--height));
   @include flex-center;
   @include font($fs: var(--font-size), $color: var(--color-dark-navy));

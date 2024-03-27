@@ -12,7 +12,7 @@ const { randomWord, health } = storeToRefs(useGame())
   <article class="random-word">
     <template v-for="word in randomWord" :key="word">
       <div class="random-word__row">
-        <template v-for="(letter, i) in word" :key="letter.name + i">
+        <template v-for="letter in word" :key="letter.name">
           <RandomWordLetter :letter="letter" />
         </template>
       </div>
@@ -22,16 +22,20 @@ const { randomWord, health } = storeToRefs(useGame())
 
 <style scoped lang="scss">
 .random-word {
-  --gap: 12px;
+  --gap: 8px;
+
+  @include tablet {
+    --gap: 12px;
+  }
+
+  @include desktop {
+    --gap: 16px;
+  }
 
   @include flex-row($horizontal: true, $gap: var(--gap));
 
   &__row {
-    --gap: 8px;
-
-    @include flex-center($gap: var(--gap));
-
-    flex-wrap: wrap;
+    @include flex-center($gap: var(--gap), $wrap: wrap);
   }
 }
 </style>

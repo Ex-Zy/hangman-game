@@ -34,18 +34,30 @@ const classes = computed(() => {
   --color: transparent;
   --opacity: 0.25;
 
+  @include tablet {
+    --width: 89px;
+    --height: 112px;
+    --radius: 32px;
+    --font-size: 64px;
+  }
+
+  @include desktop {
+    --width: 112px;
+    --height: 128px;
+    --radius: 40px;
+    --font-size: 88px;
+  }
+
   @include font($fs: 40px, $color: var(--color));
   @include flex-center(inline-flex);
   @include sizer(var(--width), var(--height));
-
-  cursor: pointer;
 
   opacity: var(--opacity);
   background: var(--color-blue);
   border-radius: var(--radius);
   box-shadow:
-    inset 0 1px 0 6px #3c74ff,
-    inset 0 -2px 0 3px #140e66;
+    inset 0 -2px 0 3px #140e66,
+    inset 0 1px 0 6px #3c74ff;
 
   &--picked {
     --color: var(--color-white);

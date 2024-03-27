@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 
-import KeyboardLetter from '@/components/InGameBoard/KeyboardLetter.vue'
+import GameKeyboardLetter from '@/components/InGameBoard/GameKeyboardLetter.vue'
 import { useGame } from '@/stores/useGame'
 
 const { keyboardAlphabet } = storeToRefs(useGame())
@@ -11,7 +11,7 @@ const { pickLetter } = useGame()
 <template>
   <article class="keyboard">
     <template v-for="letter in keyboardAlphabet" :key="letter.name">
-      <KeyboardLetter :letter="letter" @click="pickLetter(letter)" />
+      <GameKeyboardLetter :letter="letter" @click="pickLetter(letter)" />
     </template>
   </article>
 </template>
@@ -19,6 +19,14 @@ const { pickLetter } = useGame()
 <style scoped lang="scss">
 .keyboard {
   --gap: 8px;
+
+  @include tablet {
+    --gap: 16px;
+  }
+
+  @include desktop {
+    --gap: 24px;
+  }
 
   @include flex-row($gap: var(--gap));
 }

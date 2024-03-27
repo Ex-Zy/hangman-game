@@ -3,8 +3,9 @@
   color: transparent;
 }
 
-@mixin flex-center($display: flex, $gap: 0) {
+@mixin flex-center($display: flex, $gap: 0, $wrap: nowrap) {
   display: $display;
+  flex-wrap: $wrap;
   align-items: center;
   justify-content: center;
 
