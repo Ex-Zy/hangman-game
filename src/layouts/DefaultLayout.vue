@@ -8,8 +8,8 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-function redirectBack() {
-  router.back()
+async function redirectBack() {
+  await router.push('/start-game')
 }
 </script>
 
