@@ -12,8 +12,8 @@ onBeforeUnmount(reset)
 
 <template>
   <section class="in-game">
-    <RandomWord />
-    <GameKeyboard />
+    <RandomWord v-motion-slide-visible-once-bottom />
+    <GameKeyboard v-motion-slide-visible-once-top />
   </section>
 </template>
 

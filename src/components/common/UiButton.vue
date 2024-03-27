@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 interface Props {
-  variant: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary'
 }
 
 const props = withDefaults(defineProps<Props>(), {

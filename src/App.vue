@@ -15,7 +15,7 @@ const menuStore = useMenu()
   <div class="out" :class="{ 'out--inner': isInnerPage }">
     <RouterView />
   </div>
-  <MenuGame v-if="menuStore.isShow" />
+  <MenuGame v-if="menuStore.isShow" v-motion-pop />
 </template>
 
 <style lang="scss" scoped>
