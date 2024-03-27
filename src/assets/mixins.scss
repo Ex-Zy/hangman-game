@@ -13,13 +13,17 @@
   }
 }
 
-@mixin flex-row($wrap: wrap, $gap: 0) {
+@mixin flex-row($wrap: wrap, $gap: 0, $horizontal: false) {
   display: flex;
   flex-direction: row;
   flex-wrap: $wrap;
 
   @if $gap != 0 {
     gap: $gap;
+  }
+
+  @if $horizontal == true {
+    justify-content: center;
   }
 }
 

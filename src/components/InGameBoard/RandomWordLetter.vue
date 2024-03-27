@@ -14,7 +14,7 @@ const classes = computed(() => {
 
   return {
     [root]: true,
-    [`${root}--${picked}`]: !props.letter.enable
+    [`${root}--${picked}`]: props.letter.enable
   }
 })
 </script>
@@ -27,21 +27,29 @@ const classes = computed(() => {
 
 <style scoped lang="scss">
 .letter {
-  --width: 28px;
-  --height: 56px;
-  --radius: 8px;
-  --font-size: 24px;
+  --width: 40px;
+  --height: 66px;
+  --radius: 12px;
+  --font-size: 40px;
+  --color: transparent;
+  --opacity: 0.25;
 
+  @include font($fs: 40px, $color: var(--color));
+  @include flex-center(inline-flex);
   @include sizer(var(--width), var(--height));
-  @include flex-center;
-  @include font($fs: var(--font-size), $color: var(--color-dark-navy));
 
   cursor: pointer;
-  background: var(--color-white);
+
+  opacity: var(--opacity);
+  background: var(--color-blue);
   border-radius: var(--radius);
+  box-shadow:
+    inset 0 1px 0 6px #3c74ff,
+    inset 0 -2px 0 3px #140e66;
 
   &--picked {
-    background: rgba(255, 255, 255, 0.25);
+    --color: var(--color-white);
+    --opacity: 1;
   }
 }
 </style>
