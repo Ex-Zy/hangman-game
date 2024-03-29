@@ -32,7 +32,7 @@
   }
 }
 
-@mixin flex-column($gap: 0, $horizontal: false) {
+@mixin flex-column($gap: 0, $horizontal: false, $vertical: false, $height: null) {
   display: flex;
   flex-direction: column;
 
@@ -40,8 +40,16 @@
     gap: $gap;
   }
 
+  @if $vertical == true {
+    justify-content: center;
+  }
+
   @if $horizontal == true {
     align-items: center;
+  }
+
+  @if $height != null {
+    min-height: $height;
   }
 }
 

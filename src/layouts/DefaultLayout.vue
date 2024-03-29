@@ -34,23 +34,35 @@ async function redirectBack() {
   --margin: 78px;
   --width: 324px;
 
+  @include background-image('@/assets/background-mobile.svg');
+  @include flex-column($horizontal: true, $height: 100svh);
+
   @include tablet {
     --padding-block: 60px;
     --padding-inline: 60px;
     --width: 680px;
     --margin: 100px;
+
+    @include background-image('@/assets/background-tablet.svg');
   }
 
   @include desktop {
     --width: 1240px;
+
+    @include background-image('@/assets/background-desktop.svg');
   }
 
+  position: relative;
+  z-index: 1;
   padding: var(--padding-block) var(--padding-inline);
+
+  &::after {
+    @include backdrop-pseudo;
+  }
 
   &__in {
     width: 100%;
     max-width: var(--width);
-    margin: 0 auto;
   }
 
   &__header {

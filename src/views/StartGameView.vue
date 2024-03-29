@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import StartGameBoard from '@/components/StartGameBoard/StartGameBoard.vue'
+import StartGameLayout from '@/layouts/StartGameLayout.vue'
 
 const initialAnimation = {
   opacity: 0,
@@ -18,15 +19,9 @@ const enterAnimation = {
 </script>
 
 <template>
-  <div class="home">
+  <StartGameLayout>
     <StartGameBoard v-motion :initial="initialAnimation" :enter="enterAnimation" />
-  </div>
+  </StartGameLayout>
 </template>
 
-<style lang="scss" scoped>
-.home {
-  @include flex-center;
-
-  flex-grow: 1;
-}
-</style>
+<style lang="scss" scoped></style>
