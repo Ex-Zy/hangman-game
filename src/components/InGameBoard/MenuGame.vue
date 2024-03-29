@@ -38,7 +38,7 @@ async function handleQuitGame() {
 </script>
 
 <template>
-  <div class="outer">
+  <div v-if="menuStore.isShow" class="outer">
     <div class="outer__backdrop" @click="handleCloseMenu" />
     <div class="menu-game">
       <h1 class="menu-game__title">{{ menuTitle }}</h1>
