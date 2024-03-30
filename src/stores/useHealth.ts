@@ -1,25 +1,24 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useHealth = defineStore('health', () => {
-  const health = ref(100)
-  // only 8 available attempts for wrong choice
-  const DECREASE_STEP = 100 / 8
+import { HEALTH_LOSS_STEP, MAX_HEALTH, MIN_HEALTH } from '@/constants'
 
+export const useHealth = defineStore('health', () => {
+  const health = ref(MAX_HEALTH)
   function isHealthOkay() {
-    return health.value > 0
+    return health.value > MIN_HEALTH
   }
 
   function isHealthOver() {
-    return health.value <= 0
+    return health.value <= MIN_HEALTH
   }
 
   function decreaseHealth() {
-    health.value = isHealthOkay() ? health.value - DECREASE_STEP : 0
+    health.value = isHealthOkay() ? health.value - HEALTH_LOSS_STEP : MIN_HEALTH
   }
 
   function reset() {
-    health.value = 100
+    health.value = MAX_HEALTH
   }
 
   return {
