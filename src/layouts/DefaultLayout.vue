@@ -18,7 +18,7 @@ async function redirectBack() {
     <div class="layout__in">
       <header v-motion-slide-bottom class="layout__header">
         <BackButton class="layout__back-btn" @click="redirectBack" />
-        <UiHeading tag="h1" type="extra-large" :text="props.title" />
+        <UiHeading data-test="title" tag="h1" type="extra-large" :text="props.title" />
       </header>
       <main class="layout__main">
         <slot />

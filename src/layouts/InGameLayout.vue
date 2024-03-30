@@ -24,6 +24,7 @@ function handleClickHamburger() {
       <header v-motion-slide-bottom class="layout__header">
         <HamburgerButton class="layout__btn" @click="handleClickHamburger" />
         <UiHeading
+          data-test="title"
           class="layout__title"
           tag="h2"
           type="large"

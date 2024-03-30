@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import type { ComponentPublicInstance } from 'vue'
 
 import HowToPlay from '@/components/HowToPlay/HowToPlay.vue'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import HowToPlayView from '@/views/HowToPlayView.vue'
 
 describe('HowToPlayView page', () => {
@@ -22,11 +23,11 @@ describe('HowToPlayView page', () => {
   })
 
   it('mount with DefaultLayout', () => {
-    expect(wrapper.findComponent({ name: 'DefaultLayout' }).exists()).toBe(true)
+    expect(wrapper.findComponent(DefaultLayout).exists()).toBe(true)
   })
 
   it('DefaultLayout mount with title "How to play"', () => {
-    expect(wrapper.find('h1').text()).toMatch('How to Play')
+    expect(wrapper.find('[data-test="title"]').text()).toMatch('How to Play')
   })
 
   it('mount with HowToPlay component', () => {
