@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-
 import RandomWordLetter from '@/components/InGameBoard/RandomWordLetter.vue'
-import { useGame } from '@/stores/useGame'
-
-const { randomWord } = storeToRefs(useGame())
+import { useRandomWord } from '@/stores/useRandomWord'
+const randomWordStore = useRandomWord()
 </script>
 
 <template>
   <article class="random-word">
-    <template v-for="word in randomWord" :key="word">
+    <template v-for="word in randomWordStore.randomWord" :key="word">
       <div class="random-word__row">
         <template v-for="letter in word" :key="letter.name">
           <RandomWordLetter :letter="letter" />

@@ -4,10 +4,12 @@ import { onBeforeMount, onBeforeUnmount } from 'vue'
 import GameKeyboard from '@/components/InGameBoard/GameKeyboard.vue'
 import RandomWord from '@/components/InGameBoard/RandomWord.vue'
 import { useGame } from '@/stores/useGame'
+import { useRandomWord } from '@/stores/useRandomWord'
 
-const { setRandomWordToStore, reset } = useGame()
-onBeforeMount(setRandomWordToStore)
-onBeforeUnmount(reset)
+const gameStore = useGame()
+const randomWordStore = useRandomWord()
+onBeforeMount(randomWordStore.setRandomWordToStore)
+onBeforeUnmount(gameStore.reset)
 </script>
 
 <template>

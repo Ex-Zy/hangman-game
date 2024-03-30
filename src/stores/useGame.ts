@@ -5,35 +5,22 @@ import router from '@/router'
 import { useCategories } from '@/stores/useCategories'
 import { useHealth } from '@/stores/useHealth'
 import { useMenu } from '@/stores/useMenu'
+import { useRandomWord } from '@/stores/useRandomWord'
 import { createKeyboardAlphabet } from '@/stores/utils/createKeyboardAlphabet'
-import { createRandomWord } from '@/stores/utils/createRandomWord'
 import { enableLetter } from '@/stores/utils/enableLetter'
 import { isLetterCorrectly } from '@/stores/utils/isLetterCorrectly'
-import type { Categories, EncryptedWord, Letter, Word } from '@/types'
+import type { Letter } from '@/types'
 
 export const useGame = defineStore('game', () => {
   const categoriesStore = useCategories()
+  const randomWordStore = useRandomWord()
   const menuStore = useMenu()
   const healthStore = useHealth()
 
-  const initialRandomWord = ref('')
-  const randomWord = ref<EncryptedWord>([])
-
   const keyboardAlphabet = ref(createKeyboardAlphabet())
 
-  function getRandomWord(categories: Categories, category: string) {
-    const words: Word[] = categories[category]
-
-    return words[Math.floor(Math.random() * words.length)].name
-  }
-
-  function setRandomWordToStore() {
-    initialRandomWord.value = getRandomWord(categoriesStore.categories, categoriesStore.category)
-    randomWord.value = createRandomWord(initialRandomWord.value)
-  }
-
   function pickLetter(letter: Letter) {
-    if (isLetterCorrectly(randomWord.value, letter)) {
+    if (isLetterCorrectly(randomWordStore.randomWord, letter)) {
       setCorrectlyLetter(letter)
 
       if (isGameWon()) {
@@ -49,7 +36,7 @@ export const useGame = defineStore('game', () => {
   }
 
   function isGameWon(): boolean {
-    return randomWord.value.flat(1).every((letter) => letter.enable)
+    return randomWordStore.randomWord.flat(1).every((letter) => letter.enable)
   }
 
   function setCorrectlyLetter(letter: Letter) {
@@ -63,7 +50,7 @@ export const useGame = defineStore('game', () => {
   }
 
   function enableLetterInRandomWord(letter: Letter) {
-    randomWord.value = enableLetter(randomWord.value, letter)
+    randomWordStore.randomWord = enableLetter(randomWordStore.randomWord, letter)
   }
 
   function disableLetterOnKeyboard(letter: Letter) {
@@ -83,7 +70,7 @@ export const useGame = defineStore('game', () => {
 
   function playAgain() {
     reset()
-    setRandomWordToStore()
+    randomWordStore.setRandomWordToStore()
     menuStore.close()
   }
 
@@ -94,16 +81,12 @@ export const useGame = defineStore('game', () => {
   function reset() {
     // Attention: we reset current game state, but don't reset category
     healthStore.reset()
-    initialRandomWord.value = ''
-    randomWord.value = []
+    randomWordStore.reset()
     keyboardAlphabet.value = createKeyboardAlphabet()
   }
 
   return {
-    initialRandomWord,
     keyboardAlphabet,
-    randomWord,
-    setRandomWordToStore,
     pickLetter,
     reset,
     newCategory,
