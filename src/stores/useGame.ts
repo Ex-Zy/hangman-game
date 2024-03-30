@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+import router from '@/router'
 import { useCategories } from '@/stores/useCategories'
 import { useMenu } from '@/stores/useMenu'
 import { createKeyboardAlphabet } from '@/stores/utils/createKeyboardAlphabet'
@@ -85,6 +86,27 @@ export const useGame = defineStore('game', () => {
     keyboardAlphabet.value[letter.name].enable = false
   }
 
+  async function resetAndNavigate(routeName: string) {
+    reset()
+    categoriesStore.reset()
+    menuStore.close()
+    await router.push({ name: routeName })
+  }
+
+  async function newCategory() {
+    await resetAndNavigate('PickCategoryView')
+  }
+
+  function playAgain() {
+    reset()
+    setRandomWordToStore()
+    menuStore.close()
+  }
+
+  async function quitGame() {
+    await resetAndNavigate('StartGameView')
+  }
+
   function reset() {
     // Attention: we reset current game state, but don't reset category
     health.value = 100
@@ -101,6 +123,8 @@ export const useGame = defineStore('game', () => {
     setRandomWordToStore,
     pickLetter,
     reset,
-    isHealthOver
+    newCategory,
+    playAgain,
+    quitGame
   }
 })

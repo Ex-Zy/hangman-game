@@ -1,15 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-import router from '@/router'
-import { useCategories } from '@/stores/useCategories'
-import { useGame } from '@/stores/useGame'
 import type { MenuType } from '@/types'
 
 export const useMenu = defineStore('menu', () => {
-  const gameStore = useGame()
-  const categoriesStore = useCategories()
-
   const isShow = ref(false)
   const type = ref<MenuType | null>(null)
 
@@ -20,26 +14,6 @@ export const useMenu = defineStore('menu', () => {
 
   function close() {
     callMenu(false, null)
-  }
-
-  async function newCategory() {
-    gameStore.reset()
-    categoriesStore.reset()
-    close()
-    await router.push('/pick-category')
-  }
-
-  function playAgain() {
-    gameStore.reset()
-    gameStore.setRandomWordToStore()
-    close()
-  }
-
-  async function quitGame() {
-    gameStore.reset()
-    categoriesStore.reset()
-    close()
-    await router.push('/start-game')
   }
 
   function paused() {
@@ -58,9 +32,6 @@ export const useMenu = defineStore('menu', () => {
     isShow,
     type,
     paused,
-    playAgain,
-    newCategory,
-    quitGame,
     youWin,
     youLose,
     close

@@ -2,10 +2,12 @@
 import { computed } from 'vue'
 
 import UiButton from '@/components/common/UiButton.vue'
+import { useGame } from '@/stores/useGame'
 import { useMenu } from '@/stores/useMenu'
 import type { MenuType } from '@/types'
 
 const menuStore = useMenu()
+const gameStore = useGame()
 
 const GAME_VARIANTS: Record<MenuType, string> = {
   win: 'You Win',
@@ -26,14 +28,14 @@ function handleCloseMenu() {
 }
 
 function handlePlayAgain() {
-  menuStore.playAgain()
+  gameStore.playAgain()
 }
 
 async function handleNewCategory() {
-  await menuStore.newCategory()
+  await gameStore.newCategory()
 }
 async function handleQuitGame() {
-  await menuStore.quitGame()
+  await gameStore.quitGame()
 }
 </script>
 
