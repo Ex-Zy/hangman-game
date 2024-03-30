@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-
 import GameKeyboardLetter from '@/components/InGameBoard/GameKeyboardLetter.vue'
 import { useGame } from '@/stores/useGame'
+import { useKeyboard } from '@/stores/useKeyboard'
 import type { Letter } from '@/types'
 
-const { keyboardAlphabet } = storeToRefs(useGame())
+const keyboardStore = useKeyboard()
 const { pickLetter } = useGame()
 
 function handlePickLetter(letter: Letter) {
@@ -16,7 +15,7 @@ function handlePickLetter(letter: Letter) {
 
 <template>
   <article class="keyboard">
-    <template v-for="letter in keyboardAlphabet" :key="letter.name">
+    <template v-for="letter in keyboardStore.keyboardAlphabet" :key="letter.name">
       <GameKeyboardLetter :letter="letter" @click="handlePickLetter(letter)" />
     </template>
   </article>

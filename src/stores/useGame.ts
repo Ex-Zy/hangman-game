@@ -1,14 +1,11 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 
 import router from '@/router'
 import { useCategories } from '@/stores/useCategories'
 import { useHealth } from '@/stores/useHealth'
+import { useKeyboard } from '@/stores/useKeyboard'
 import { useMenu } from '@/stores/useMenu'
 import { useRandomWord } from '@/stores/useRandomWord'
-import { createKeyboardAlphabet } from '@/stores/utils/createKeyboardAlphabet'
-import { enableLetter } from '@/stores/utils/enableLetter'
-import { isLetterCorrectly } from '@/stores/utils/isLetterCorrectly'
 import type { Letter } from '@/types'
 
 export const useGame = defineStore('game', () => {
@@ -16,22 +13,23 @@ export const useGame = defineStore('game', () => {
   const randomWordStore = useRandomWord()
   const menuStore = useMenu()
   const healthStore = useHealth()
-
-  const keyboardAlphabet = ref(createKeyboardAlphabet())
+  const keyboardStore = useKeyboard()
 
   function pickLetter(letter: Letter) {
-    if (isLetterCorrectly(randomWordStore.randomWord, letter)) {
+    if (randomWordStore.isLetterCorrectly(letter)) {
       setCorrectlyLetter(letter)
-
-      if (isGameWon()) {
-        menuStore.youWin()
-      }
     } else {
       setWrongLetter(letter)
+    }
 
-      if (healthStore.isHealthOver()) {
-        menuStore.youLose()
-      }
+    checkGameStatus()
+  }
+
+  function checkGameStatus() {
+    if (isGameWon()) {
+      menuStore.youWin()
+    } else if (healthStore.isHealthOver()) {
+      menuStore.youLose()
     }
   }
 
@@ -40,21 +38,13 @@ export const useGame = defineStore('game', () => {
   }
 
   function setCorrectlyLetter(letter: Letter) {
-    disableLetterOnKeyboard(letter)
-    enableLetterInRandomWord(letter)
+    keyboardStore.disableLetterOnKeyboard(letter)
+    randomWordStore.enableLetterInRandomWord(letter)
   }
 
   function setWrongLetter(letter: Letter) {
-    disableLetterOnKeyboard(letter)
+    keyboardStore.disableLetterOnKeyboard(letter)
     healthStore.decreaseHealth()
-  }
-
-  function enableLetterInRandomWord(letter: Letter) {
-    randomWordStore.randomWord = enableLetter(randomWordStore.randomWord, letter)
-  }
-
-  function disableLetterOnKeyboard(letter: Letter) {
-    keyboardAlphabet.value[letter.name].enable = false
   }
 
   async function resetAndNavigate(routeName: string) {
@@ -82,11 +72,10 @@ export const useGame = defineStore('game', () => {
     // Attention: we reset current game state, but don't reset category
     healthStore.reset()
     randomWordStore.reset()
-    keyboardAlphabet.value = createKeyboardAlphabet()
+    keyboardStore.reset()
   }
 
   return {
-    keyboardAlphabet,
     pickLetter,
     reset,
     newCategory,

@@ -3,7 +3,8 @@ import { ref } from 'vue'
 
 import { useCategories } from '@/stores/useCategories'
 import { createRandomWord } from '@/stores/utils/createRandomWord'
-import type { Categories, EncryptedWord, Word } from '@/types'
+import { enableLetter } from '@/stores/utils/enableLetter'
+import type { Categories, EncryptedWord, Letter, Word } from '@/types'
 
 export const useRandomWord = defineStore('randomWord', () => {
   const categoriesStore = useCategories()
@@ -22,6 +23,14 @@ export const useRandomWord = defineStore('randomWord', () => {
     randomWord.value = createRandomWord(initialRandomWord.value)
   }
 
+  function enableLetterInRandomWord(letter: Letter) {
+    randomWord.value = enableLetter(randomWord.value, letter)
+  }
+
+  function isLetterCorrectly(letter: Letter) {
+    return randomWord.value.flat(1).some((currentLetter) => currentLetter.name === letter.name)
+  }
+
   function reset() {
     initialRandomWord.value = ''
     randomWord.value = []
@@ -32,6 +41,8 @@ export const useRandomWord = defineStore('randomWord', () => {
     randomWord,
     getRandomWord,
     setRandomWordToStore,
+    enableLetterInRandomWord,
+    isLetterCorrectly,
     reset
   }
 })
