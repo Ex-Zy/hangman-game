@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 import router from '@/router'
 import { useCategories } from '@/stores/useCategories'
+import { useHealth } from '@/stores/useHealth'
 import { useMenu } from '@/stores/useMenu'
 import { createKeyboardAlphabet } from '@/stores/utils/createKeyboardAlphabet'
 import { createRandomWord } from '@/stores/utils/createRandomWord'
@@ -13,12 +14,12 @@ import type { Categories, EncryptedWord, Letter, Word } from '@/types'
 export const useGame = defineStore('game', () => {
   const categoriesStore = useCategories()
   const menuStore = useMenu()
+  const healthStore = useHealth()
 
   const initialRandomWord = ref('')
   const randomWord = ref<EncryptedWord>([])
 
   const keyboardAlphabet = ref(createKeyboardAlphabet())
-  const health = ref(100)
 
   function getRandomWord(categories: Categories, category: string) {
     const words: Word[] = categories[category]
@@ -41,7 +42,7 @@ export const useGame = defineStore('game', () => {
     } else {
       setWrongLetter(letter)
 
-      if (isHealthOver()) {
+      if (healthStore.isHealthOver()) {
         menuStore.youLose()
       }
     }
@@ -58,24 +59,7 @@ export const useGame = defineStore('game', () => {
 
   function setWrongLetter(letter: Letter) {
     disableLetterOnKeyboard(letter)
-    decreaseHealth()
-  }
-
-  function decreaseHealth() {
-    // only 8 available attempts for wrong choice
-    const DECREASE_STEP = 100 / 8
-
-    if (isHealthOkay()) {
-      health.value -= DECREASE_STEP
-    }
-  }
-
-  function isHealthOkay() {
-    return health.value > 0
-  }
-
-  function isHealthOver() {
-    return health.value <= 0
+    healthStore.decreaseHealth()
   }
 
   function enableLetterInRandomWord(letter: Letter) {
@@ -109,7 +93,7 @@ export const useGame = defineStore('game', () => {
 
   function reset() {
     // Attention: we reset current game state, but don't reset category
-    health.value = 100
+    healthStore.reset()
     initialRandomWord.value = ''
     randomWord.value = []
     keyboardAlphabet.value = createKeyboardAlphabet()
@@ -119,7 +103,6 @@ export const useGame = defineStore('game', () => {
     initialRandomWord,
     keyboardAlphabet,
     randomWord,
-    health,
     setRandomWordToStore,
     pickLetter,
     reset,

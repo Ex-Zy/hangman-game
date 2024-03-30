@@ -22,7 +22,7 @@ describe('InGameView page', () => {
               categories: {
                 category: 'Movies'
               },
-              game: {
+              health: {
                 health: 100
               }
             },

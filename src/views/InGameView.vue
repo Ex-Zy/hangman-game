@@ -2,14 +2,14 @@
 import InGameBoard from '@/components/InGameBoard/InGameBoard.vue'
 import InGameLayout from '@/layouts/InGameLayout.vue'
 import { useCategories } from '@/stores/useCategories'
-import { useGame } from '@/stores/useGame'
+import { useHealth } from '@/stores/useHealth'
 
 const categoriesStore = useCategories()
-const gameStore = useGame()
+const healthStore = useHealth()
 </script>
 
 <template>
-  <InGameLayout :title="categoriesStore.category" :health="gameStore.health">
+  <InGameLayout :title="categoriesStore.category" :health="healthStore.health">
     <InGameBoard />
   </InGameLayout>
 </template>
