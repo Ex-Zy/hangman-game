@@ -77,6 +77,7 @@ export const useGame = defineStore('game', () => {
 
   return {
     pickLetter,
+    isGameWon,
     reset,
     newCategory,
     playAgain,

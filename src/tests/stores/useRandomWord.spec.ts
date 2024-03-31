@@ -52,14 +52,6 @@ describe('useRandomWord store', () => {
     expect(randomWordStore.randomWord).toEqual(randomWordExpected)
   })
 
-  // it('should return a random word from categories', async () => {
-  //   const randomWordStore = useRandomWord()
-  //   const { categories } = await import('@/data/db.json')
-  //   const category = 'Animals'
-  //   vi.spyOn(randomWordStore, 'getRandomWord').mockReturnValueOnce('Elephant')
-  //   expect(randomWordStore.getRandomWord(categories, category)).toBe('Elephant')
-  // })
-
   it('should disable letter on randomWord when enableLetterInRandomWord is called', () => {
     const randomWordStore = useRandomWord()
     const letter = { name: 'E', enable: true }
