@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-
 import router from '@/router'
 import { useCategories } from '@/stores/useCategories'
 
-const { categoriesName } = storeToRefs(useCategories())
-const { pickCategory } = useCategories()
+const categoriesStore = useCategories()
 
 async function handleClick(name: string) {
-  pickCategory(name)
+  categoriesStore.pickCategory(name)
   await router.push('/in-game')
 }
 </script>
 
 <template>
   <ul class="categories">
-    <template v-for="(name, index) in categoriesName" :key="name">
+    <template v-for="(name, index) in categoriesStore.categoriesName" :key="name">
       <template v-if="index % 2">
         <li v-motion-slide-visible-once-left class="categories__item" @click="handleClick(name)">
           {{ name }}

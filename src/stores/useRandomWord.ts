@@ -4,19 +4,14 @@ import { ref } from 'vue'
 import { useCategories } from '@/stores/useCategories'
 import { createRandomWord } from '@/stores/utils/createRandomWord'
 import { enableLetter } from '@/stores/utils/enableLetter'
-import type { Categories, EncryptedWord, Letter, Word } from '@/types'
+import { getRandomWord } from '@/stores/utils/getRandomWord'
+import type { EncryptedWord, Letter } from '@/types'
 
 export const useRandomWord = defineStore('randomWord', () => {
   const categoriesStore = useCategories()
 
   const initialRandomWord = ref('')
   const randomWord = ref<EncryptedWord>([])
-
-  function getRandomWord(categories: Categories, category: string) {
-    const words: Word[] = categories[category]
-
-    return words[Math.floor(Math.random() * words.length)].name
-  }
 
   function setRandomWordToStore() {
     initialRandomWord.value = getRandomWord(categoriesStore.categories, categoriesStore.category)
@@ -39,7 +34,6 @@ export const useRandomWord = defineStore('randomWord', () => {
   return {
     initialRandomWord,
     randomWord,
-    getRandomWord,
     setRandomWordToStore,
     enableLetterInRandomWord,
     isLetterCorrectly,
