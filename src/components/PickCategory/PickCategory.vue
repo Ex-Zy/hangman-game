@@ -14,12 +14,22 @@ async function handleClick(name: string) {
   <ul class="categories">
     <template v-for="(name, index) in categoriesStore.categoriesName" :key="name">
       <template v-if="index % 2">
-        <li v-motion-slide-visible-once-left class="categories__item" @click="handleClick(name)">
+        <li
+          v-motion-slide-visible-once-left
+          class="categories__item"
+          data-test="category"
+          @click="handleClick(name)"
+        >
           {{ name }}
         </li>
       </template>
       <template v-else>
-        <li v-motion-slide-visible-once-right class="categories__item" @click="handleClick(name)">
+        <li
+          v-motion-slide-visible-once-right
+          class="categories__item"
+          data-test="category"
+          @click="handleClick(name)"
+        >
           {{ name }}
         </li>
       </template>
