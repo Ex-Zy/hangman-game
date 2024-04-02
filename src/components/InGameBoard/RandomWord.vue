@@ -7,9 +7,9 @@ const randomWordStore = useRandomWord()
 <template>
   <article class="random-word">
     <template v-for="word in randomWordStore.randomWord" :key="word">
-      <div class="random-word__row">
+      <div class="random-word__row" data-test="row">
         <template v-for="letter in word" :key="letter.name">
-          <RandomWordLetter :letter="letter" />
+          <RandomWordLetter data-test="letter" :letter="letter" />
         </template>
       </div>
     </template>

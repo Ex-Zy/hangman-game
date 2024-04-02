@@ -39,6 +39,7 @@ describe('PickCategory', () => {
 
   afterEach(() => {
     wrapper.unmount()
+    vi.clearAllMocks()
   })
 
   it('should mount correctly', () => {

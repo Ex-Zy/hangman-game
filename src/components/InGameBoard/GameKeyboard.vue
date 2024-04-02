@@ -14,9 +14,9 @@ function handlePickLetter(letter: Letter) {
 </script>
 
 <template>
-  <article class="keyboard">
+  <article class="keyboard" data-test="keyboard">
     <template v-for="letter in keyboardStore.keyboardAlphabet" :key="letter.name">
-      <GameKeyboardLetter :letter="letter" @click="handlePickLetter(letter)" />
+      <GameKeyboardLetter data-test="letter" :letter="letter" @click="handlePickLetter(letter)" />
     </template>
   </article>
 </template>
