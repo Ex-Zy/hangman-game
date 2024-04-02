@@ -1,44 +1,38 @@
 import { createTestingPinia } from '@pinia/testing'
 import { flushPromises, shallowMount, type VueWrapper } from '@vue/test-utils'
-import { MotionPlugin } from '@vueuse/motion'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import PickCategory from '@/components/PickCategory/PickCategory.vue'
 import router from '@/router'
 import { useCategories } from '@/stores/useCategories'
 
-vi.mock('@/stores/useCategories', async (importOriginal) => {
-  const useCategoriesModule = await importOriginal<typeof import('@/stores/useCategories')>()
-
-  return {
-    ...useCategoriesModule,
-    pickCategory: vi.fn()
-  }
-})
-
-vi.mock('@/router', async (importOriginal) => {
-  const routerModule = await importOriginal<typeof import('@/router')>()
-
-  return {
-    default: {
-      ...routerModule,
-      push: vi.fn()
-    }
-  }
-})
+vi.mock('@/stores/useCategories')
+vi.mock('@/router')
 
 describe('PickCategory', () => {
   let wrapper: VueWrapper<InstanceType<typeof PickCategory>>
 
+  const mockStore = {
+    ...useCategories(),
+    categoriesName: ['Sports', 'Animals'],
+    pickCategory: vi.fn()
+  }
+
+  vi.mocked(useCategories).mockReturnValue(mockStore)
+  vi.mocked(router).push = vi.fn()
+
   beforeEach(() => {
+    const pinia = createTestingPinia({
+      createSpy: vi.fn
+    })
+
     wrapper = shallowMount(PickCategory, {
       global: {
-        plugins: [
-          MotionPlugin,
-          createTestingPinia({
-            createSpy: () => vi.fn()
-          })
-        ]
+        plugins: [pinia, router],
+        directives: {
+          motionSlideVisibleOnceLeft: vi.fn(),
+          motionSlideVisibleOnceRight: vi.fn()
+        }
       }
     })
   })
@@ -51,18 +45,19 @@ describe('PickCategory', () => {
     expect(wrapper).toBeDefined()
   })
 
-  it('should render categories', () => {
-    const expectedCategoriesLength = useCategories().categoriesName.length
+  it('should mount categories', () => {
+    const expectedCategoriesLength = mockStore.categoriesName.length
     expect(wrapper.findAll('[data-test="category"]')).toHaveLength(expectedCategoriesLength)
   })
 
-  it('should redirect to InGameView when pick category', async () => {
+  it('should pick category', async () => {
     const categoryItem = wrapper.find('[data-test="category"]')
+    const expectedCategory = mockStore.categoriesName[0]
 
     await categoryItem.trigger('click')
     await flushPromises()
 
-    expect(useCategories().pickCategory).toHaveBeenCalled()
+    expect(useCategories().pickCategory).toHaveBeenCalledWith(expectedCategory)
     // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(router.push).toHaveBeenCalledWith('/in-game')
   })
