@@ -17,7 +17,10 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@pdanpdan/vue-keyboard-trap": "^1.0.19",
+    "@types/lodash": "^4.17.0",
     "@vueuse/motion": "^2.1.0",
+    "lodash": "^4.17.21",
     "pinia": "^2.1.7",
     "the-new-css-reset": "^1.11.2",
     "vue": "^3.4.21",
