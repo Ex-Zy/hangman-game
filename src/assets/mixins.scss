@@ -199,6 +199,12 @@
 
 @mixin focus {
   &:focus {
+    @include mobile {
+      box-shadow:
+        0 0 0 0.3rem var(--color-white),
+        0 0 0 0.2rem var(--color-dark-navy);
+    }
+
     box-shadow:
       0 0 0 0.5rem var(--color-white),
       0 0 0 0.75rem var(--color-dark-navy);

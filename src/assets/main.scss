@@ -4,6 +4,8 @@ body {
   @include antialias;
   @include font;
 
+  background: #1a0645;
+
   -webkit-tap-highlight-color: transparent;
 }
 
