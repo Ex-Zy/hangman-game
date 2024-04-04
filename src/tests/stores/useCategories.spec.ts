@@ -16,7 +16,7 @@ describe('useCategories store', () => {
 
   it('should initialize with correct defaults', () => {
     const categoriesStore = useCategories()
-    expect(categoriesStore.category).toBe('')
+    expect(categoriesStore.category).not.toBe('')
     expect(categoriesStore.categories).toEqual(categories)
   })
 

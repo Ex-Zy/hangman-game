@@ -8,7 +8,11 @@ export const useCategories = defineStore('categories', () => {
   const categories = reactive<Categories>(data.categories)
   const categoriesName = computed<string[]>(() => Object.keys(categories).map((key) => key))
 
-  const category = ref(localStorage.getItem('category') ?? '')
+  const category = ref(defaultCategory())
+
+  function defaultCategory() {
+    return localStorage.getItem('category') ?? 'Movies'
+  }
 
   function pickCategory(newCategory: string) {
     category.value = newCategory
