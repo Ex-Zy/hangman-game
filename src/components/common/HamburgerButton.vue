@@ -12,13 +12,23 @@ import IconHamburger from '@/components/icons/IconHamburger.vue'
 .btn-hamburger {
   --size: 40px;
   --radius: 50%;
+  --icon-width: 18px;
+  --icon-height: 14px;
 
   @include sizer(var(--size));
 
   @include tablet {
     --size: 64px;
+    --icon-width: 26px;
+    --icon-height: 22px;
 
     box-shadow: inset 0 -6px 0 7px rgba(157, 45, 245, 0.25);
+  }
+
+  @include desktop {
+    --size: 94px;
+    --icon-width: 38px;
+    --icon-height: 32px;
   }
 
   @include linear-gradient(bottom, #fe71fe #7199ff);
@@ -38,13 +48,8 @@ import IconHamburger from '@/components/icons/IconHamburger.vue'
   }
 
   &__icon {
-    @include tablet {
-      width: 26px;
-      height: 22px;
-    }
-
-    width: 18px;
-    height: 14px;
+    width: var(--icon-width);
+    height: var(--icon-height);
     margin: auto;
     fill: var(--color-white);
   }

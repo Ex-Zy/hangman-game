@@ -59,6 +59,7 @@ async function handleClick(name: string) {
 
   @include desktop {
     --height: 190px;
+    --gap: 40px;
 
     grid-template-columns: 1fr 1fr 1fr;
   }

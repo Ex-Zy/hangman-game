@@ -6,3 +6,19 @@ body {
 
   -webkit-tap-highlight-color: transparent;
 }
+
+.is-lock-scroll {
+  touch-action: none;
+
+  overflow: hidden;
+  overscroll-behavior: none;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+// override the default style of the kbd-trap
+[data-v-kbd-trap]::after {
+  top: -40px !important;
+  right: 0 !important;
+}

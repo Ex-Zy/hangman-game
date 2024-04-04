@@ -57,24 +57,32 @@ $font-size: (
   }
 
   &--h1 {
+    @include mobile {
+      font-size: 48px;
+    }
+
     @include tablet {
       font-size: 104px;
       letter-spacing: -0.01em;
     }
 
-    @include mobile {
-      font-size: 48px;
+    @include desktop {
+      font-size: 136px;
     }
   }
 
   &--h2 {
+    @include mobile {
+      font-size: 40px;
+      letter-spacing: -0.01em;
+    }
+
     @include tablet {
       font-size: 48px;
     }
 
-    @include mobile {
-      font-size: 40px;
-      letter-spacing: -0.01em;
+    @include desktop {
+      font-size: 88px;
     }
   }
 }

@@ -44,10 +44,9 @@ function handleClickHamburger() {
 
 <style scoped lang="scss">
 .layout {
-  --padding-block: 32px;
-  --padding-inline: 32px;
+  --padding-block: 46px;
   --margin: 78px;
-  --width: 324px;
+  --width: 328px;
   --gap: 16px;
 
   @include background-image('@/assets/background-mobile.svg');
@@ -55,24 +54,24 @@ function handleClickHamburger() {
 
   @include tablet {
     --padding-block: 60px;
-    --padding-inline: 60px;
-    --width: 680px;
-    --margin: 100px;
+    --width: 704px;
+    --margin: 114px;
     --gap: 32px;
 
     @include background-image('@/assets/background-tablet.svg');
   }
 
   @include desktop {
-    --width: 1240px;
+    --width: 1216px;
     --gap: 40px;
+    --margin: 88px;
 
     @include background-image('@/assets/background-desktop.svg');
   }
 
   position: relative;
   z-index: 1;
-  padding: var(--padding-block) var(--padding-inline);
+  padding-block: var(--padding-block);
 
   &::after {
     @include backdrop-pseudo;

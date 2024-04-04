@@ -47,15 +47,24 @@ function handlePickLetter(letter: Letter) {
 .keyboard {
   --gap: 8px;
 
+  @include mobile {
+    row-gap: 26px;
+  }
+
   @include tablet {
     --gap: 16px;
   }
 
   @include desktop {
     --gap: 24px;
+
+    max-width: 1174px;
+    margin: 0 auto;
   }
 
   @include flex-column($gap: var(--gap));
+
+  position: relative;
 
   &__row {
     @include flex-row($wrap: nowrap, $gap: var(--gap));

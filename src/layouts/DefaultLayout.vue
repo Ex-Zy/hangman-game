@@ -30,31 +30,31 @@ async function redirectBack() {
 <style scoped lang="scss">
 .layout {
   --padding-block: 32px;
-  --padding-inline: 32px;
-  --margin: 78px;
-  --width: 324px;
+  --margin: 98px;
+  --width: 328px;
 
   @include background-image('@/assets/background-mobile.svg');
   @include flex-column($horizontal: true, $height: 100svh);
 
   @include tablet {
     --padding-block: 60px;
-    --padding-inline: 60px;
-    --width: 680px;
-    --margin: 100px;
+    --width: 704px;
+    --margin: 114px;
 
     @include background-image('@/assets/background-tablet.svg');
   }
 
   @include desktop {
-    --width: 1240px;
+    --width: 1216px;
+    --margin: 88px;
+    --padding-block: 80px;
 
     @include background-image('@/assets/background-desktop.svg');
   }
 
   position: relative;
   z-index: 1;
-  padding: var(--padding-block) var(--padding-inline);
+  padding-block: var(--padding-block);
 
   &::after {
     @include backdrop-pseudo;

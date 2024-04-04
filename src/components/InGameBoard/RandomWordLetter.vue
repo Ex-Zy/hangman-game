@@ -48,7 +48,7 @@ const classes = computed(() => {
     --font-size: 88px;
   }
 
-  @include font($fs: 40px, $color: var(--color));
+  @include font($fs: var(--font-size), $color: var(--color));
   @include flex-center(inline-flex);
   @include sizer(var(--width), var(--height));
 

@@ -21,8 +21,18 @@ onBeforeUnmount(gameStore.reset)
 
 <style scoped lang="scss">
 .in-game {
+  --gap: 120px;
+
+  @include tablet {
+    --gap: 134px;
+  }
+
+  @include desktop {
+    --gap: 120px;
+  }
+
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: var(--gap);
 }
 </style>

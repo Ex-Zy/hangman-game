@@ -27,7 +27,7 @@ const classes = computed(() => {
 
 <style scoped lang="scss">
 .letter {
-  --width: 28px;
+  --width: 29px;
   --height: 56px;
   --radius: 8px;
   --font-size: 24px;
