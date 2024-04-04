@@ -14,7 +14,9 @@ export const useRandomWord = defineStore('randomWord', () => {
   const randomWord = ref<EncryptedWord>([])
 
   function setRandomWordToStore() {
-    initialRandomWord.value = getRandomWord(categoriesStore.categories, categoriesStore.category)
+    initialRandomWord.value =
+      import.meta.env.VITE_APP_RANDOM_WORD ||
+      getRandomWord(categoriesStore.categories, categoriesStore.category)
     randomWord.value = createRandomWord(initialRandomWord.value)
   }
 

@@ -11,7 +11,10 @@ export const useCategories = defineStore('categories', () => {
   const category = ref(defaultCategory())
 
   function defaultCategory() {
-    return localStorage.getItem('category') ?? 'Movies'
+    return (
+      (import.meta.env.VITE_APP_CATEGORY || localStorage.getItem('category')) ??
+      import.meta.env.VITE_APP_DEFAULT_CATEGORY
+    )
   }
 
   function pickCategory(newCategory: string) {
