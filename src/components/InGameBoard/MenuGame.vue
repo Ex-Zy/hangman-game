@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { useEventListener } from '@vueuse/core'
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import { computed, nextTick, ref, watch } from 'vue'
 
 import UiButton from '@/components/common/UiButton.vue'
 import { useGame } from '@/stores/useGame'
@@ -8,6 +10,34 @@ import type { MenuType } from '@/types'
 
 const menuStore = useMenu()
 const gameStore = useGame()
+
+const toggleMenuClass = (isShow: boolean) => {
+  const toggle = isShow ? 'add' : 'remove'
+  document.body.classList[toggle]('is-lock-scroll')
+}
+
+watch(() => menuStore.isShow, toggleMenuClass)
+
+const closeOnEscape = (e: KeyboardEvent) => {
+  if (e.key === 'Escape' && menuStore.isShow) {
+    handleCloseMenu()
+  }
+}
+
+useEventListener(document, 'keyup', closeOnEscape)
+
+const menuRef = ref<HTMLDivElement | null>(null)
+const { activate, deactivate } = useFocusTrap(menuRef)
+const toggleActivateMenuFocus = async (isShow: boolean) => {
+  if (isShow) {
+    await nextTick()
+    activate()
+  } else {
+    deactivate()
+  }
+}
+
+watch(() => menuStore.isShow, toggleActivateMenuFocus)
 
 const GAME_VARIANTS: Record<MenuType, string> = {
   win: 'You Win',
@@ -23,6 +53,7 @@ const isPause = computed(() => menuStore.type === 'pause')
 const isGameOver = computed(() => menuStore.type === 'win' || menuStore.type === 'lose')
 
 function handleCloseMenu() {
+  // prevent closing menu when game is over
   if (isGameOver.value) return
   menuStore.close()
 }
@@ -40,9 +71,16 @@ async function handleQuitGame() {
 </script>
 
 <template>
-  <div v-if="menuStore.isShow" class="outer">
-    <div class="outer__backdrop" role="presentation" @click="handleCloseMenu" />
-    <div class="menu-game">
+  <div
+    v-if="menuStore.isShow"
+    class="outer"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true"
+    @keyup.esc="handleCloseMenu"
+  >
+    <div tabindex="0" class="outer__backdrop" role="presentation" @click="handleCloseMenu" />
+    <div ref="menuRef" class="menu-game">
       <h1 class="menu-game__title">{{ menuTitle }}</h1>
       <div class="menu-game__buttons">
         <UiButton v-if="isGameOver" @click="handlePlayAgain">PLAY AGAIN</UiButton>
@@ -61,6 +99,7 @@ async function handleQuitGame() {
   position: fixed;
   z-index: 100;
   inset: 0;
+  overscroll-behavior: contain;
 
   &__backdrop {
     @include backdrop-pseudo;
