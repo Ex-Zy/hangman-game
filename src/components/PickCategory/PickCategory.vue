@@ -11,10 +11,10 @@ async function handleClick(name: string) {
 </script>
 
 <template>
-  <ul class="categories">
+  <div class="categories">
     <template v-for="(name, index) in categoriesStore.categoriesName" :key="name">
       <template v-if="index % 2">
-        <li
+        <button
           v-motion-slide-visible-once-left
           tabindex="0"
           class="categories__item"
@@ -23,10 +23,10 @@ async function handleClick(name: string) {
           @keyup.enter="handleClick(name)"
         >
           {{ name }}
-        </li>
+        </button>
       </template>
       <template v-else>
-        <li
+        <button
           v-motion-slide-visible-once-right
           tabindex="0"
           class="categories__item"
@@ -35,10 +35,10 @@ async function handleClick(name: string) {
           @keyup.enter="handleClick(name)"
         >
           {{ name }}
-        </li>
+        </button>
       </template>
     </template>
-  </ul>
+  </div>
 </template>
 
 <style scoped lang="scss">
