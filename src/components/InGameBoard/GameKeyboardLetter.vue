@@ -20,9 +20,9 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <div :class="classes">
+  <button type="button" :class="classes">
     {{ props.letter.name }}
-  </div>
+  </button>
 </template>
 
 <style scoped lang="scss">
@@ -49,8 +49,13 @@ const classes = computed(() => {
   @include sizer(var(--width), var(--height));
   @include flex-center;
   @include font($fs: var(--font-size), $color: var(--color-dark-navy));
+  @include focus;
 
   cursor: pointer;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+
   background: var(--color-white);
   border-radius: var(--radius);
 

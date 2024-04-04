@@ -16,9 +16,11 @@ async function handleClick(name: string) {
       <template v-if="index % 2">
         <li
           v-motion-slide-visible-once-left
+          tabindex="0"
           class="categories__item"
           data-test="category"
           @click="handleClick(name)"
+          @keyup.enter="handleClick(name)"
         >
           {{ name }}
         </li>
@@ -26,9 +28,11 @@ async function handleClick(name: string) {
       <template v-else>
         <li
           v-motion-slide-visible-once-right
+          tabindex="0"
           class="categories__item"
           data-test="category"
           @click="handleClick(name)"
+          @keyup.enter="handleClick(name)"
         >
           {{ name }}
         </li>
@@ -68,6 +72,7 @@ async function handleClick(name: string) {
     @include btn-typography;
     @include btn-blue;
     @include btn-blue-hover;
+    @include focus;
 
     cursor: pointer;
 

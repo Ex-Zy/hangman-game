@@ -3,7 +3,7 @@ import IconBack from '@/components/icons/IconBack.vue'
 </script>
 
 <template>
-  <button type="button" class="btn-back">
+  <button tabindex="0" type="button" class="btn-back">
     <IconBack class="btn-back__icon" />
   </button>
 </template>
@@ -22,6 +22,7 @@ import IconBack from '@/components/icons/IconBack.vue'
   }
 
   @include linear-gradient(bottom, #fe71fe #7199ff);
+  @include focus;
 
   cursor: pointer;
 

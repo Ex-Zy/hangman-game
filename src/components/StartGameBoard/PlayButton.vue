@@ -3,7 +3,7 @@ import IconPlay from '@/components/icons/IconPlay.vue'
 </script>
 
 <template>
-  <button type="button" class="btn-play">
+  <button tabindex="0" type="button" class="btn-play">
     <IconPlay class="btn-play__icon" />
   </button>
 </template>
@@ -14,6 +14,7 @@ import IconPlay from '@/components/icons/IconPlay.vue'
 
   @include sizer(var(--size));
   @include linear-gradient(bottom, #fe71fe #7199ff);
+  @include focus;
 
   @include tablet {
     --size: 200px;

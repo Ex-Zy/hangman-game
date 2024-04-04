@@ -25,7 +25,7 @@ function handleClick() {
 </script>
 
 <template>
-  <button :class="classes" @click="handleClick"><slot>Default text</slot></button>
+  <button tabindex="0" :class="classes" @click="handleClick"><slot>Default text</slot></button>
 </template>
 
 <style scoped lang="scss">
@@ -36,6 +36,7 @@ function handleClick() {
 
   @include sizer(var(--width), var(--height));
   @include btn-typography;
+  @include focus;
 
   cursor: pointer;
   position: relative;

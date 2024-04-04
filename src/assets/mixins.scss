@@ -196,3 +196,11 @@
   opacity: 0.75;
   background: linear-gradient(180deg, #1a043a 0%, #151278 70.31%, #2b1677 100%);
 }
+
+@mixin focus {
+  &:focus {
+    box-shadow:
+      0 0 0 0.5rem var(--color-white),
+      0 0 0 0.75rem var(--color-dark-navy);
+  }
+}

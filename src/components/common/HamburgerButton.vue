@@ -3,7 +3,7 @@ import IconHamburger from '@/components/icons/IconHamburger.vue'
 </script>
 
 <template>
-  <button type="button" class="btn-hamburger">
+  <button tabindex="0" type="button" class="btn-hamburger">
     <IconHamburger class="btn-hamburger__icon" />
   </button>
 </template>
@@ -22,6 +22,7 @@ import IconHamburger from '@/components/icons/IconHamburger.vue'
   }
 
   @include linear-gradient(bottom, #fe71fe #7199ff);
+  @include focus;
 
   cursor: pointer;
 
