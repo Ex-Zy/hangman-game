@@ -11,11 +11,12 @@ const props = withDefaults(defineProps<Props>(), {
 const indicatorRef = ref<HTMLDivElement>()
 const actions = ref<(() => void)[]>([])
 const DURATION = 1000
+const isAnimating = ref(false)
 
 function animate() {
-  indicatorRef.value?.classList.add('shake-horizontal')
+  isAnimating.value = true
   setTimeout(() => {
-    indicatorRef.value?.classList.remove('shake-horizontal')
+    isAnimating.value = false
   }, DURATION)
 }
 
@@ -35,7 +36,7 @@ watch(() => actions.value.length, popActions)
 </script>
 
 <template>
-  <div ref="indicatorRef" class="progress">
+  <div ref="indicatorRef" class="progress" :class="{ 'progress--animate': isAnimating }">
     <div class="progress__indicator" :style="{ width: `${props.value}%` }"></div>
   </div>
 </template>
@@ -46,6 +47,7 @@ watch(() => actions.value.length, popActions)
   --width: 58px;
   --height: 16px;
   --indicator-height: 8px;
+  --indicator-color: var(--color-dark-navy);
   --border-size: 4px;
 
   @include tablet {
@@ -68,19 +70,18 @@ watch(() => actions.value.length, popActions)
 
   &__indicator {
     height: var(--indicator-height);
-    background: var(--color-dark-navy);
+    background: var(--indicator-color);
     border-radius: var(--radius);
-    transition: width 1s;
+    transition:
+      width 2s,
+      background 0.5s;
   }
-}
 
-/**
- * ----------------------------------------
- * animation shake-horizontal
- * ----------------------------------------
- */
-.shake-horizontal {
-  animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  &--animate {
+    --indicator-color: #ca3256;
+
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
 }
 
 @keyframes shake-horizontal {
