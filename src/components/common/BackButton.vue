@@ -4,6 +4,7 @@ import IconBack from '@/components/icons/IconBack.vue'
 
 <template>
   <button tabindex="0" type="button" class="btn-back">
+    back
     <IconBack class="btn-back__icon" />
   </button>
 </template>
@@ -16,6 +17,7 @@ import IconBack from '@/components/icons/IconBack.vue'
   --radius: 50%;
 
   @include sizer(var(--size));
+  @include font-hide;
 
   @include tablet {
     --size: 64px;

@@ -51,7 +51,7 @@
         y2="113.61"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#67B6FF" />
+        <stop offset="1" stop-color="#67B6FF" />
         <stop offset="1" stop-color="#fff" />
       </linearGradient>
       <linearGradient
@@ -62,7 +62,7 @@
         y2="113.61"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#67B6FF" />
+        <stop offset="1" stop-color="#67B6FF" />
         <stop offset="1" stop-color="#fff" />
       </linearGradient>
       <linearGradient
@@ -73,7 +73,7 @@
         y2="113.61"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#67B6FF" />
+        <stop offset="1" stop-color="#67B6FF" />
         <stop offset="1" stop-color="#fff" />
       </linearGradient>
       <linearGradient
@@ -84,7 +84,7 @@
         y2="113.61"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#67B6FF" />
+        <stop offset="1" stop-color="#67B6FF" />
         <stop offset="1" stop-color="#fff" />
       </linearGradient>
       <linearGradient
@@ -95,7 +95,7 @@
         y2="113.61"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#67B6FF" />
+        <stop stop-color="#67B6FF" offset="1" />
         <stop offset="1" stop-color="#fff" />
       </linearGradient>
       <linearGradient
@@ -106,7 +106,7 @@
         y2="113.61"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#67B6FF" />
+        <stop stop-color="#67B6FF" offset="1" />
         <stop offset="1" stop-color="#fff" />
       </linearGradient>
       <linearGradient
@@ -117,7 +117,7 @@
         y2="113.61"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#67B6FF" />
+        <stop offset="1" stop-color="#67B6FF" />
         <stop offset="1" stop-color="#fff" />
       </linearGradient>
     </defs>

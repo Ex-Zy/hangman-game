@@ -4,6 +4,7 @@ import IconHamburger from '@/components/icons/IconHamburger.vue'
 
 <template>
   <button tabindex="0" type="button" class="btn-hamburger">
+    open menu
     <IconHamburger class="btn-hamburger__icon" />
   </button>
 </template>
@@ -16,6 +17,7 @@ import IconHamburger from '@/components/icons/IconHamburger.vue'
   --icon-height: 14px;
 
   @include sizer(var(--size));
+  @include font-hide;
 
   @include tablet {
     --size: 64px;

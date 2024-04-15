@@ -4,6 +4,7 @@ import IconPlay from '@/components/icons/IconPlay.vue'
 
 <template>
   <button tabindex="0" type="button" class="btn-play">
+    play
     <IconPlay class="btn-play__icon" />
   </button>
 </template>
@@ -15,6 +16,7 @@ import IconPlay from '@/components/icons/IconPlay.vue'
   @include sizer(var(--size));
   @include linear-gradient(bottom, #fe71fe #7199ff);
   @include focus;
+  @include font-hide;
 
   @include tablet {
     --size: 200px;
@@ -23,10 +25,15 @@ import IconPlay from '@/components/icons/IconPlay.vue'
   @include flex-center;
 
   cursor: pointer;
+
+  font-size: 0;
+  color: transparent;
+
   border-radius: 50%;
   box-shadow:
     inset 0 -4px 0 5px #243041,
     inset 0 -12px 0 11px #9d2df5;
+
   transition:
     box-shadow 0.25s,
     transform 0.25s;
