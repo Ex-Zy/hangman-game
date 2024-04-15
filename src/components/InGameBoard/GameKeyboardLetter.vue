@@ -59,6 +59,8 @@ const classes = computed(() => {
   background: var(--color-white);
   border-radius: var(--radius);
 
+  transition: all 0.5s;
+
   &--picked {
     background: rgba(255, 255, 255, 0.25);
   }

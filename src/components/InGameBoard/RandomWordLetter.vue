@@ -75,7 +75,7 @@ const classes = computed(() => {
   }
 
   50% {
-    transform: scale(1.4, 1.4);
+    transform: scale(1.3, 1.3);
   }
 
   100% {

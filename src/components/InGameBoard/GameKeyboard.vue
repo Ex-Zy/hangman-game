@@ -30,6 +30,7 @@ function handlePickLetter(letter: Letter) {
         <div role="row" class="keyboard__row">
           <template v-for="letter of row" :key="letter.name">
             <GameKeyboardLetter
+              v-wave
               role="gridcell"
               data-test="letter"
               tabindex="0"
