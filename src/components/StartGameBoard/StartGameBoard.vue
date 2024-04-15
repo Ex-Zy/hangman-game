@@ -24,6 +24,7 @@ async function redirectTo(page: 'how-to-play' | 'pick-category') {
   --radius: 48px;
 
   @include sizer(var(--width), var(--height));
+  @include flex-center;
 
   @include tablet {
     --width: 592px;
@@ -58,9 +59,7 @@ async function redirectTo(page: 'how-to-play' | 'pick-category') {
   }
 
   &__play {
-    @include center(both);
-
-    position: absolute;
+    margin: auto;
   }
 }
 </style>
