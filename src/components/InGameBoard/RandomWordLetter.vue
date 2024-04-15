@@ -59,9 +59,27 @@ const classes = computed(() => {
     inset 0 -2px 0 3px #140e66,
     inset 0 1px 0 6px #3c74ff;
 
+  transition: all 0.25s;
+
   &--picked {
     --color: var(--color-white);
     --opacity: 1;
+
+    animation: zoom 1s ease;
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.4, 1.4);
+  }
+
+  100% {
+    transform: scale(1, 1);
   }
 }
 </style>
